@@ -28,10 +28,10 @@ export default class Article extends Component {
         if (!this.state.isOpen) return null;
         const {article} = this.props;
         return (
-            <p>
+            <div>
                 {article.text}
                 {this.getComments()}
-            </p>
+            </div>
         );
     }
 

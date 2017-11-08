@@ -14,20 +14,23 @@ export default class CommentList extends Component {
 
     render() {
        return (
-           <aside>
+           <div>
                <button onClick = {this.toggle.bind(this)}>
                    {this.state.isOpen ? '<<<' : '>>>'}
                </button>
                {this.getComments()}
-           </aside>
+           </div>
        )
     }
 
     getComments() {
         if (!this.state.isOpen) return null;
+
         const {comments} = this.props;
+        if (!comments || !comments.length) return <p>No comments yes</p>;
+
         const commentElements = comments.map(comment => {
-            return <Comment comment = {comment} />
+            return <Comment key = {comment.id} comment = {comment} />
         });
         return commentElements;
     }
