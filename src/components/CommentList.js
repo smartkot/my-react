@@ -1,21 +1,20 @@
 import React, {Component} from 'react';
 import Comment from './Comment';
+import ToggleClick from '../decorators/ToggleClick';
 
-export default class CommentList extends Component {
+class CommentList extends Component {
 
     static defaultProps = {
         comments: []
     };
 
-    state = {
-        isOpen: true
-    };
-
     render() {
+        const {isOpen, toggle} = this.props;
+
        return (
            <div>
-               <button onClick = {this.toggle.bind(this)}>
-                   {this.state.isOpen ? '<<<' : '>>>'}
+               <button onClick = {toggle}>
+                   {isOpen ? 'hide' : 'show'}
                </button>
                {this.getComments()}
            </div>
@@ -23,9 +22,9 @@ export default class CommentList extends Component {
     }
 
     getComments() {
-        if (!this.state.isOpen) return null;
+        const {comments, isOpen} = this.props;
+        if (!isOpen) return null;
 
-        const {comments} = this.props;
         if (!comments.length) return <p>No comments yes</p>;
 
         const commentElements = comments.map(comment => {
@@ -34,9 +33,6 @@ export default class CommentList extends Component {
         return commentElements;
     }
 
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 }
+
+export default ToggleClick(CommentList)
