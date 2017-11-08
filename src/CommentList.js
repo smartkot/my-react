@@ -3,14 +3,13 @@ import Comment from './Comment';
 
 export default class CommentList extends Component {
 
-    constructor(props) {
-        super(props);
+    static defaultProps = {
+        comments: []
+    };
 
-        this.state = {
-            isOpen: false
-        }
-
-    }
+    state = {
+        isOpen: true
+    };
 
     render() {
        return (
@@ -27,7 +26,7 @@ export default class CommentList extends Component {
         if (!this.state.isOpen) return null;
 
         const {comments} = this.props;
-        if (!comments || !comments.length) return <p>No comments yes</p>;
+        if (!comments.length) return <p>No comments yes</p>;
 
         const commentElements = comments.map(comment => {
             return <Comment key = {comment.id} comment = {comment} />
