@@ -1,16 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Article from './Article';
 
-export default function ArticleList({articles}) {
+class ArticleList extends Component {
 
-    const articleElements = articles.map(article => {
-        return <Article key = {article.id} article = {article} />;
-    });
+    state = {
+      openArticleId: null
+    };
 
-    return (
-        <section>
-            <h1>Articles</h1>
-            {articleElements}
-        </section>
-    )
+    render() {
+        const articleElements = this.props.articles.map(article => {
+            return <Article
+                key = {article.id}
+                article = {article}
+                isOpen = {article.id === this.state.openArticleId}
+                toggle = {this.toggleOpen.bind(this, article.id)}
+            />;
+        });
+
+        return (
+            <section>
+                <h1>Articles</h1>
+                {articleElements}
+            </section>
+        )
+    }
+
+    toggleOpen(openArticleId) {
+        this.setState({
+            openArticleId
+        });
+    }
+
 }
+
+export default ArticleList;
