@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
-// import ToggleClick from '../decorators/ToggleClick';
+
 
 class Article extends Component {
 
@@ -10,17 +10,15 @@ class Article extends Component {
             id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired
-        })
+        }),
+        isOpen: PropTypes.bool,
+        toggle: PropTypes.func
     };
-
-    componentWillMount() {
-        console.log('---', 'componentWillMount');
-    }
 
     render() {
         const {article, isOpen, toggle} = this.props;
         return (
-            <article ref = {(node) => console.log(node)}>
+            <article>
                 <h2>{article.title}</h2>
                 <button onClick = {toggle}>
                     {isOpen ? 'close' : 'open'}
@@ -29,10 +27,6 @@ class Article extends Component {
 
             </article>
         )
-    }
-
-    componentDidMount() {
-        console.log('---', 'componentDidMount');
     }
 
     getBody() {

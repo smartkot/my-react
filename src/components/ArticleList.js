@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Article from './Article';
+import Accordion from '../decorators/Accordion';
 
 class ArticleList extends Component {
 
-    state = {
-      openArticleId: null
+    static propTypes = {
+        articles: PropTypes.array.isRequired,
+        // from Accordion
+        openItemId: PropTypes.string,
+        toggleOpenItem: PropTypes.func
+
     };
 
     render() {
-        const articleElements = this.props.articles.map(article => {
+        const {articles, openItemId, toggleOpenItem} = this.props;
+        const articleElements = articles.map(article => {
             return <Article
                 key = {article.id}
                 article = {article}
-                isOpen = {article.id === this.state.openArticleId}
-                toggle = {this.toggleOpen.bind(this, article.id)}
+                isOpen = {article.id === openItemId}
+                toggle = {toggleOpenItem(article.id)}
             />;
         });
 
@@ -24,13 +31,6 @@ class ArticleList extends Component {
             </section>
         )
     }
-
-    toggleOpen(openArticleId) {
-        this.setState({
-            openArticleId
-        });
-    }
-
 }
 
-export default ArticleList;
+export default Accordion(ArticleList);
