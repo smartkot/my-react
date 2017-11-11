@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
 
-
-class Article extends Component {
+class Article extends PureComponent {
 
     static propTypes = {
         article: PropTypes.shape({
@@ -15,8 +14,28 @@ class Article extends Component {
         toggle: PropTypes.func
     };
 
+    state = {
+        indexUpdate: 0
+    };
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('shouldComponentUpdate', nextProps, nextState);
+    //     return nextProps.isOpen !== this.props.isOpen;
+    // }
+
+    // componentDidMount() {
+    //     console.log('---', 'mounting')
+    // }
+    //
+    // componentDidUpdate() {
+    //     console.log('---', 'updating')
+    // }
+
     render() {
         const {article, isOpen, toggle} = this.props;
+
+        console.log('---', 'update article');
+
         return (
             <article>
                 <h2>{article.title}</h2>
@@ -35,6 +54,7 @@ class Article extends Component {
         return (
             <div>
                 {article.text}
+                <button onClick = {() => this.setState({indexUpdate: this.state.indexUpdate + 1})}>ClickMe</button>
                 {this.getComments()}
             </div>
         );
@@ -42,7 +62,7 @@ class Article extends Component {
 
     getComments() {
         const {article} = this.props;
-        return <CommentList comments = {article.comments} />;
+        return <CommentList comments = {article.comments} key = {this.state.indexUpdate}/>;
     }
 
 }

@@ -6,6 +6,10 @@ export default (OriginComponent) => class WrappedComponent extends ReactComponen
        isOpen: true
     };
 
+    // componentWillUnmount() {
+    //     console.log('---', 'unmounting');
+    // }
+
     render() {
         return <OriginComponent {...this.props} {...this.state} toggle = {this.toggle} />
     }

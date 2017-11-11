@@ -14,7 +14,7 @@ export default Component => class Accordion extends React.Component {
     }
 
     toggleOpenItem = openItemId => ev => {
-        console.log('===', ev, openItemId);
+        // console.log('===', ev);
         this.setState({
             openItemId: openItemId === this.state.openItemId ? null : openItemId
         });
