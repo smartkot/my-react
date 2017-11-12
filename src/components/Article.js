@@ -1,8 +1,8 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
 
-class Article extends PureComponent {
+class Article extends Component {
 
     static propTypes = {
         article: PropTypes.shape({

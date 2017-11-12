@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Article from './Article';
 import Accordion from '../decorators/Accordion';
+import Userform from './Userform';
 
 class ArticleList extends Component {
 
@@ -26,11 +27,13 @@ class ArticleList extends Component {
 
         return (
             <section>
+                <Userform />
                 <h1>Articles</h1>
                 {articleElements}
             </section>
         )
     }
+
 }
 
 export default Accordion(ArticleList);
