@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
+import './styles.css';
 
 class Article extends Component {
 
@@ -43,7 +44,6 @@ class Article extends Component {
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
-
             </article>
         )
     }

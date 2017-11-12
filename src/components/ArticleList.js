@@ -5,6 +5,8 @@ import Accordion from '../decorators/Accordion';
 import Userform from './Userform';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import FadeInAndOut from './Mytransition';
+
 
 class ArticleList extends Component {
 
@@ -37,6 +39,7 @@ class ArticleList extends Component {
 
         return (
             <section>
+                <FadeInAndOut />
                 <Userform />
                 <Select options = {options}
                         value = {this.state.selection}
