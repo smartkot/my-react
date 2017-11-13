@@ -2,31 +2,33 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Article from './Article';
 import Accordion from '../decorators/Accordion';
+import {connect} from 'react-redux';
 import Userform from './Userform';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+// import 'react-select/dist/react-select.css';
 import FadeInAndOut from './Mytransition';
 
 
 class ArticleList extends Component {
 
     static propTypes = {
+        //from connect
         articles: PropTypes.array.isRequired,
-        // from Accordion
+        //from Accordion
         openItemId: PropTypes.string,
         toggleOpenItem: PropTypes.func
     };
 
-    state = {
-        selection: null
-    };
+    // state = {
+    //     selection: null
+    // };
 
     render() {
         const {articles, openItemId, toggleOpenItem} = this.props;
-        const options = articles.map(article => ({
-            label: article.title,
-            value: article.id
-        }));
+        // const options = articles.map(article => ({
+        //     label: article.title,
+        //     value: article.id
+        // }));
 
         const articleElements = articles.map(article => {
             return <Article
@@ -39,21 +41,23 @@ class ArticleList extends Component {
 
         return (
             <section>
-                <FadeInAndOut />
-                <Userform />
-                <Select options = {options}
-                        value = {this.state.selection}
-                        onChange = {this.changeSelection}
-                        multi = {true} />
+                {/*<FadeInAndOut />*/}
+                {/*<Userform />*/}
+                {/*<Select options = {options}*/}
+                        {/*value = {this.state.selection}*/}
+                        {/*onChange = {this.changeSelection}*/}
+                        {/*multi = {true} />*/}
                 <h1>Articles</h1>
                 {articleElements}
             </section>
         )
     }
 
-    changeSelection = (selection) => this.setState({selection})
+    // changeSelection = (selection) => this.setState({selection})
 }
 
 
 
-export default Accordion(ArticleList);
+export default connect(state => ({
+    articles: state.articles
+}))(Accordion(ArticleList));

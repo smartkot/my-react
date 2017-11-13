@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Counter from './components/Counter';
 import store from './store';
 import {Provider} from 'react-redux';
+
+import Counter from './components/Counter';
+import ArticleList from './components/ArticleList';
+
 import logo from './logo.svg';
 import './App.css';
-
 
 
 class App extends Component {
@@ -16,7 +18,9 @@ class App extends Component {
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title">Welcome to React</h1>
                     </header>
-                    <Counter />
+                    <Counter/>
+                    <hr/>
+                    <ArticleList/>
                 </div>
             </Provider>
         );

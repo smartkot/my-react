@@ -31,3 +31,8 @@
 .form-field__error {
     color: #f55;
 }
+
+.button-flat {
+    margin: 10px;
+    padding: 10px;
+}

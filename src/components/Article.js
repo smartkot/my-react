@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {deleteArticle} from '../AC';
 import CommentList from './CommentList';
 import './styles.css';
 
@@ -40,10 +42,13 @@ class Article extends Component {
         return (
             <article>
                 <h2>{article.title}</h2>
-                <button onClick = {toggle}>
-                    {isOpen ? 'close' : 'open'}
+                <button className={'button-flat'} onClick = {toggle}>
+                    {isOpen ? 'Close' : 'Open'}
                 </button>
-                {this.getBody()}
+                <button className={'button-flat'} onClick = {this.handleDelete}>
+                    Delete Me
+                </button>
+                <small>{this.getBody()}</small>
             </article>
         )
     }
@@ -54,7 +59,6 @@ class Article extends Component {
         return (
             <div>
                 {article.text}
-                <button onClick = {() => this.setState({indexUpdate: this.state.indexUpdate + 1})}>ClickMe</button>
                 {this.getComments()}
             </div>
         );
@@ -65,7 +69,13 @@ class Article extends Component {
         return <CommentList comments = {article.comments} key = {this.state.indexUpdate}/>;
     }
 
+    handleDelete = () => {
+        const {deleteArticle, article} = this.props;
+        deleteArticle(article.id);
+        console.log('---', 'deleting');
+    }
+
 }
 
 // export default ToggleClick(Article)
-export default Article
+export default connect(null, { deleteArticle })(Article);

@@ -4,6 +4,6 @@ import reducer from '../reducer';
 const store = createStore(reducer);
 
 //dev
-// window.store = store;
+window.store = store;
 
 export default store;
